@@ -1,6 +1,10 @@
-import { Layout } from "@/components/Layout";
+import type { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
 import { User } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About | MIT Advisory",
+};
 
 const advisors = [
   {
@@ -20,16 +24,23 @@ const advisors = [
   },
 ];
 
-const About = () => (
-  <Layout>
+export default function AboutPage() {
+  return (
     <div className="section-padding">
       <div className="container-narrow">
-        <h1 className="text-3xl font-bold text-foreground md:text-4xl">About MIT Advisory</h1>
+        <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+          About MIT Advisory
+        </h1>
         <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-          Founded in 2023, MIT Advisory helps startups and established businesses in specialized areas — from SaaS strategy and AI to SAP security and industry-specific challenges. We work hands-on at the intersection of technology, AI, and operations.
+          Founded in 2023, MIT Advisory helps startups and established businesses
+          in specialized areas — from SaaS strategy and AI to SAP security and
+          industry-specific challenges. We work hands-on at the intersection of
+          technology, AI, and operations.
         </p>
 
-        <h2 className="mt-16 mb-8 text-2xl font-semibold text-foreground">Key Advisors</h2>
+        <h2 className="mt-16 mb-8 text-2xl font-semibold text-foreground">
+          Key Advisors
+        </h2>
         <div className="space-y-6">
           {advisors.map((a) => (
             <Card key={a.name}>
@@ -38,9 +49,13 @@ const About = () => (
                   <User className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">{a.name}</h3>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {a.name}
+                  </h3>
                   <p className="text-sm text-primary">{a.title}</p>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{a.bio}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    {a.bio}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -48,7 +63,5 @@ const About = () => (
         </div>
       </div>
     </div>
-  </Layout>
-);
-
-export default About;
+  );
+}

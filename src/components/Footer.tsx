@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -16,15 +16,15 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold text-foreground">Services</p>
-            <Link to="/startup-saas" className="text-sm text-muted-foreground hover:text-primary">Startup & SaaS Advisory</Link>
-            <Link to="/ai-assistants" className="text-sm text-muted-foreground hover:text-primary">AI & Virtual Assistants</Link>
-            <Link to="/sap-security" className="text-sm text-muted-foreground hover:text-primary">SAP Security</Link>
-            <Link to="/industry-focus" className="text-sm text-muted-foreground hover:text-primary">Industry Focus</Link>
+            <Link href="/startup-saas" className="text-sm text-muted-foreground hover:text-primary">Startup & SaaS Advisory</Link>
+            <Link href="/ai-assistants" className="text-sm text-muted-foreground hover:text-primary">AI & Virtual Assistants</Link>
+            <Link href="/sap-security" className="text-sm text-muted-foreground hover:text-primary">SAP Security</Link>
+            <Link href="/industry-focus" className="text-sm text-muted-foreground hover:text-primary">Industry Focus</Link>
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold text-foreground">Company</p>
-            <Link to="/about" className="text-sm text-muted-foreground hover:text-primary">About Us</Link>
-            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link>
+            <Link href="/about" className="text-sm text-muted-foreground hover:text-primary">About Us</Link>
+            <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link>
           </div>
         </div>
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">

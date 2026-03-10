@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Next.js site to Pages
 
 on:
   push:
@@ -36,15 +36,12 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          BASE_PATH: /mit-advisory/
-
-      - name: Copy index.html to 404.html for SPA routing
-        run: cp dist/index.html dist/404.html
+          NEXT_PUBLIC_BASE_PATH: /mit-advisory
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: ./out
 
   deploy:
     environment:
