@@ -31,5 +31,9 @@ lerna-debug.log*
 !.vscode/extensions.json
 .idea
 
+# generated assets
+public/optimized
+src/lib/blurPlaceholders.json
+
 # next.js types
 next-env.d.ts

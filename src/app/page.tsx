@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Rocket, Bot, Shield, Factory } from "lucide-react";
+import blurPlaceholders from "@/lib/blurPlaceholders.json";
 
 const specializations = [
   {
@@ -37,13 +39,26 @@ const specializations = [
 export default function Home() {
   return (
     <>
-      <section className="section-padding">
+      <section className="relative isolate overflow-hidden section-padding">
+        <Image
+          src="/optimized/marmor-kirken-back-white.avif"
+          alt=""
+          fill
+          priority
+          className="object-cover -z-10 brightness-[0.35]"
+          placeholder="blur"
+          blurDataURL={
+            blurPlaceholders[
+              "/optimized/marmor-kirken-back-white.avif" as keyof typeof blurPlaceholders
+            ]
+          }
+        />
         <div className="container-narrow text-center">
-          <h1 className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
             We help startups turn great ideas into scalable, profitable
             businesses
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80">
             MIT Advisory partners with startups and growth companies to shape
             winning products, design strong business models, and build
             subscription strategies that scale.
