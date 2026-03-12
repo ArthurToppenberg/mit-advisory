@@ -1,9 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Rocket, Bot, Shield, Factory } from "lucide-react";
-import blurPlaceholders from "@/lib/blurPlaceholders.json";
+import { AppImage } from "@/components/AppImage";
 
 const specializations = [
   {
@@ -40,18 +39,12 @@ export default function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden section-padding">
-        <Image
+        <AppImage
           src="/optimized/marmor-kirken-back-white.avif"
           alt=""
           fill
           priority
           className="object-cover -z-10 brightness-[0.35]"
-          placeholder="blur"
-          blurDataURL={
-            blurPlaceholders[
-              "/optimized/marmor-kirken-back-white.avif" as keyof typeof blurPlaceholders
-            ]
-          }
         />
         <div className="container-narrow text-center">
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
