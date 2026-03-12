@@ -36,6 +36,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Restore optimized images cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            public/optimized
+            src/lib/blurPlaceholders.json
+          key: images-${{ hashFiles('media/**', 'scripts/optimizeImages.mjs') }}
+          restore-keys: |
+            images-
+
       - name: Build
         run: pnpm build
         env:
