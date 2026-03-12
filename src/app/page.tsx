@@ -38,15 +38,16 @@ const specializations = [
 export default function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden section-padding">
+      <section className="relative -mt-16 flex min-h-screen items-center justify-center isolate overflow-hidden">
         <AppImage
-          src="/optimized/marmor-kirken-back-white.avif"
+          src="/optimized/marmor-kirken-black-white.avif"
           alt=""
           fill
           priority
           className="object-cover -z-10 brightness-[0.35]"
+          sizes="100vw"
         />
-        <div className="container-narrow text-center">
+        <div className="container-narrow px-6 pt-16 text-center">
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
             We help startups turn great ideas into scalable, profitable
             businesses

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
-import { User } from "lucide-react";
+import { AppImage } from "@/components/AppImage";
 
 export const metadata: Metadata = {
   title: "About | MIT Advisory",
@@ -9,16 +9,19 @@ export const metadata: Metadata = {
 const advisors = [
   {
     name: "Jens Toppenberg",
+    image: "/optimized/jensToppenberg.avif",
     title: "Advisor — Tech Entrepreneurship & SaaS",
     bio: "Jens is an experienced tech entrepreneur and founder with a strong track record in building and scaling software businesses. He combines deep expertise in IT, data-driven production systems, cloud platforms, and AI-enabled software with practical business leadership. Jens co-founded and led Cloudfarms ApS, where the SaaS platform transformed agricultural production using data-driven management systems, delivering services to farming businesses in more than 50 countries. At MIT Advisory, Jens helps founders refine product strategy, align technology with business objectives, and build scalable subscription-based models.",
   },
   {
     name: "Isabella Toppenberg",
+    image: "/optimized/isabellaToppenberg.avif",
     title: "Advisor — SAP Security & Enterprise Governance",
     bio: "Isabella is a trusted advisor with deep expertise in SAP Security, access governance, and compliance for large enterprises. She supports organizations in designing and strengthening SAP security architectures that scale across global operations — focusing on role and authorization design, risk mitigation, audit readiness, and governance frameworks. Isabella acts as a bridge between IT, security, compliance, and business leadership, translating technical SAP security requirements into clear, actionable solutions.",
   },
   {
     name: "Gregor Rayman",
+    image: "/optimized/gregorRayman.avif",
     title: "Advisor — Technology & Systems Architecture",
     bio: "Gregor is a seasoned technology leader and architect with more than 25 years of experience building scalable software systems. As Co-Founder and CTO of CloudFarms, he led the technical strategy and engineering of digital solutions integrating IoT, cloud platforms, and data-driven systems across 50+ countries. His background spans enterprise software architecture, middleware engineering, and large-scale distributed systems. At MIT Advisory, Gregor contributes deep technical leadership, helping clients shape robust architectures, adopt modern development practices, and build products that are scalable, secure, and fit for long-term growth.",
   },
@@ -45,8 +48,14 @@ export default function AboutPage() {
           {advisors.map((a) => (
             <Card key={a.name}>
               <CardContent className="flex gap-6 p-6">
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-secondary">
-                  <User className="h-8 w-8 text-muted-foreground" />
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-secondary">
+                  <AppImage
+                    src={a.image}
+                    alt={a.name}
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">

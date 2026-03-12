@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -15,14 +15,43 @@ const links = [
   { label: "About", href: "/about" },
 ];
 
+const SCROLL_THRESHOLD = 50;
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const handleScroll = useCallback((): void => {
+    setScrolled(window.scrollY > SCROLL_THRESHOLD);
+  }, []);
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const transparent = isHome && !scrolled && !open;
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <nav
+      className={cn(
+        "sticky top-0 z-50 transition-colors duration-300",
+        transparent
+          ? "bg-transparent border-b border-transparent"
+          : "bg-background/80 backdrop-blur-md border-b border-border"
+      )}
+    >
       <div className="container-wide flex h-16 items-center justify-between px-6">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-foreground">
+        <Link
+          href="/"
+          className={cn(
+            "text-lg font-semibold tracking-tight transition-colors",
+            transparent ? "text-white" : "text-foreground"
+          )}
+        >
           MIT Advisory
         </Link>
 
@@ -33,18 +62,28 @@ export function Navbar() {
               href={l.href}
               className={cn(
                 "text-sm transition-colors hover:text-primary",
-                pathname === l.href ? "text-primary font-medium" : "text-muted-foreground"
+                transparent
+                  ? pathname === l.href
+                    ? "text-white font-medium"
+                    : "text-white/70 hover:text-white"
+                  : pathname === l.href
+                    ? "text-primary font-medium"
+                    : "text-muted-foreground"
               )}
             >
               {l.label}
             </Link>
           ))}
-          <Button asChild size="sm">
+          <Button asChild size="sm" variant={transparent ? "secondary" : "default"}>
             <Link href="/contact">Contact</Link>
           </Button>
         </div>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+        <button
+          className={cn("md:hidden", transparent ? "text-white" : "")}
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
