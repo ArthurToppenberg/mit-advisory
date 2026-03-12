@@ -38,13 +38,13 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
+        "sticky top-0 z-50 h-16 transition-colors duration-300",
         transparent
           ? "bg-transparent border-b border-transparent"
           : "bg-background/80 backdrop-blur-md border-b border-border"
       )}
     >
-      <div className="container-wide flex h-16 items-center justify-between px-6">
+      <div className="container-wide flex h-full items-center justify-between px-6">
         <Link
           href="/"
           className={cn(
