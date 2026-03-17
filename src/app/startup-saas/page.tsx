@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ServiceSection } from "@/components/ServiceSection";
 import { ResultBlock } from "@/components/ResultBlock";
+import { AppImage } from "@/components/AppImage";
 
 export const metadata: Metadata = {
   title: "Startup & SaaS Advisory | MIT Advisory",
@@ -17,6 +18,16 @@ export default function StartupSaasPage() {
           Product positioning, pricing, and subscription models designed to
           maximize long-term value and profitability.
         </p>
+
+        <div className="relative mt-10 aspect-[21/12] w-full overflow-hidden rounded-xl">
+          <AppImage
+            src="/optimized/christans-havn.avif"
+            alt="Christianshavn, Copenhagen"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 720px"
+          />
+        </div>
 
         <div className="mt-12 divide-y divide-border">
           <ServiceSection title="Product & Value Proposition Definition">

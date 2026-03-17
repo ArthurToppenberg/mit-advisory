@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,12 +8,39 @@ import { Label } from "@/components/ui/label";
 import { Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
-export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+type ContactFormState = {
+  name: string;
+  email: string;
+  message: string;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+const buildMailtoUrl = (params: {
+  to: string;
+  subject: string;
+  body: string;
+}): string => {
+  const subject = encodeURIComponent(params.subject);
+  const body = encodeURIComponent(params.body);
+  return `mailto:${params.to}?subject=${subject}&body=${body}`;
+};
+
+export default function ContactPage() {
+  const [form, setForm] = useState<ContactFormState>({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    toast.success("Thank you! We'll get back to you soon.");
+    const mailtoUrl = buildMailtoUrl({
+      to: "contact@mitadvisory.com",
+      subject: `Website contact from ${form.name}`,
+      body: `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}\n`,
+    });
+
+    toast.message("Contact » Opening your email client");
+    window.location.href = mailtoUrl;
     setForm({ name: "", email: "", message: "" });
   };
 
