@@ -49,7 +49,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          NEXT_PUBLIC_BASE_PATH: /mit-advisory
+          NEXT_PUBLIC_BASE_PATH: ""
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
