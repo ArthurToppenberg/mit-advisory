@@ -57,9 +57,6 @@ export default function Home() {
             winning products, design strong business models, and build
             subscription strategies that scale.
           </p>
-          <Button asChild size="lg" className="mt-8">
-            <Link href="/contact">Get in touch</Link>
-          </Button>
         </div>
       </section>
 
